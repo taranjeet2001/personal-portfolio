@@ -106,7 +106,7 @@
 	                <span class="number" data-number="10">0</span>
 	                <span>Project complete</span>
                 </p>
-                <p><a href="/static/myinfo/document/Taran_9999284429.pdf"  class="btn btn-primary py-3 px-3">Download CV</a></p>
+                <p><a href="/static/myinfo/document/Taranjeet-9999284429.pdf"  class="btn btn-primary py-3 px-3">Download CV</a></p>
               </div>
 	          </div>
 	        </div>
@@ -138,7 +138,7 @@
 					    		<span class="flaticon-ideas"></span>
 					    	</div>
 					    	<div class="text pl-3">
-		    					<span class="date">March 2023-Present</span>
+		    					<span class="date">September 2023-Present</span>
 		    					<h2>Software Developer</h2>
 		    					<span class="position">SPA Innovision Pvt Ltd</span>
 								<p><strong>Projects:</strong> Worked on projects such as Integrity NDT HRMS, Asset Management System, and NDT Reporting Software, focusing on generating NDT reports, managing stores, and overseeing asset inventory. Developed a scalable and modular application architecture to improve system efficiency and maintainability.</p>
@@ -892,7 +892,45 @@
 
 
 	<script>
-		function ContactUs(){
+
+		function ContactUs() {
+			let name = document.getElementById('txtName').value;
+			let email = document.getElementById('txtEmail').value;
+			let subject = document.getElementById('txtSubject').value;
+			let message = document.getElementById('txtMessage').value;
+		
+			let data = {
+				name: name,
+				email: email,
+				subject: subject,
+				message: message
+			};
+		
+			$.ajax({
+				url: "{% url 'send_contact_email' %}",  // Update this to your new URL
+				method: "POST",
+				data: data,
+				dataType: "json",
+				success: function(response) {
+					if (response.status === 'Sent') {
+						$("#msg").text("Thank you! Your message has been sent.");
+						$("#msg").show();
+					} else {
+						$("#msg").text("Error sending message. Please try again.");
+						$("#msg").show();
+					}
+				},
+				error: function() {
+					$("#msg").text("Something went wrong. Please try again.");
+					$("#msg").show();
+				}
+			});
+		}
+
+
+
+
+		{% comment %} function ContactUs(){
 			// e.preventDefault();
 			let name = document.getElementById('txtName').value
             let email = document.getElementById('txtEmail').value
@@ -924,7 +962,7 @@
 				}
           	}
         })
-      }
+      } {% endcomment %}
 	</script>
 
   <script src="{% static 'myinfo/js/jquery.min.js' %}"></script>
