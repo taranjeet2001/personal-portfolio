@@ -1,4 +1,5 @@
 {% load static %}
+{% load portfolio_text %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -80,7 +81,7 @@
               <div class="col-md-12 heading-section ftco-animate">
                 <h1 class="big">About</h1>
                 <h2 class="mb-4">About Me</h2>
-                <p>{% if profile %}{{ profile.summary|safe }}{% else %}Add a short summary in admin.{% endif %}</p>
+                <div class="rich-content">{% if profile %}{{ profile.summary|render_portfolio_text }}{% else %}<p>Add a short summary in admin.</p>{% endif %}</div>
                 <ul class="about-info mt-4 px-md-0 px-2">
                   <li class="d-flex"><span>Name:</span> <span>{% if profile %}{{ profile.full_name }}{% else %}Taranjeet Singh{% endif %}</span></li>
                   <li class="d-flex"><span>Location:</span> <span>{% if profile %}{{ profile.location }}{% else %}Kalkaji, New Delhi{% endif %}</span></li>
@@ -131,7 +132,7 @@
                       <span class="date">{{ item.period }}</span>
                       <h2>{{ item.title }}</h2>
                       <span class="position">{{ item.company }}</span>
-                      <p>{{ item.description|safe }}</p>
+                      <div class="rich-content">{{ item.description|render_portfolio_text }}</div>
                     </div>
                   </div>
                 {% empty %}
@@ -349,7 +350,7 @@
           <div class="col-md">
             <div class="ftco-footer-widget mb-4">
               <h2 class="ftco-heading-2">About</h2>
-              <p>{% if profile %}{{ profile.summary|safe }}{% else %}A highly organized and hardworking individual seeking a responsible position to learn and utilize skills to the maximum.{% endif %}</p>
+              <div class="rich-content">{% if profile %}{{ profile.summary|render_portfolio_text }}{% else %}<p>A highly organized and hardworking individual seeking a responsible position to learn and utilize skills to the maximum.</p>{% endif %}</div>
             </div>
           </div>
           <div class="col-md">
