@@ -1,6 +1,7 @@
 from django.contrib import admin
 
 from .models import Certification, Experience, PortfolioProfile, ProfileTag, Skill, contact
+from .forms import ExperienceAdminForm, PortfolioProfileAdminForm
 
 
 class ProfileTagInline(admin.TabularInline):
@@ -10,6 +11,7 @@ class ProfileTagInline(admin.TabularInline):
 
 class ExperienceInline(admin.StackedInline):
     model = Experience
+    form = ExperienceAdminForm
     extra = 0
 
 
@@ -25,6 +27,7 @@ class SkillInline(admin.TabularInline):
 
 @admin.register(PortfolioProfile)
 class PortfolioProfileAdmin(admin.ModelAdmin):
+    form = PortfolioProfileAdminForm
     list_display = ("full_name", "headline", "email", "phone")
     inlines = [ProfileTagInline, ExperienceInline, CertificationInline, SkillInline]
 
