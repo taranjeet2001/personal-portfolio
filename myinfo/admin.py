@@ -8,12 +8,12 @@ class ProfileTagInline(admin.TabularInline):
     extra = 0
 
 
-class ExperienceInline(admin.TabularInline):
+class ExperienceInline(admin.StackedInline):
     model = Experience
     extra = 0
 
 
-class CertificationInline(admin.TabularInline):
+class CertificationInline(admin.StackedInline):
     model = Certification
     extra = 0
 
