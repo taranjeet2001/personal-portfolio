@@ -1,5 +1,5 @@
 from django.contrib.auth import get_user_model
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 
 
 class Command(BaseCommand):
@@ -11,9 +11,13 @@ class Command(BaseCommand):
         password = options.get("password") or self._env("DJANGO_SUPERUSER_PASSWORD")
 
         if not username or not password:
-            raise CommandError(
-                "DJANGO_SUPERUSER_USERNAME and DJANGO_SUPERUSER_PASSWORD are required."
+            self.stdout.write(
+                self.style.WARNING(
+                    "Skipping superuser setup because DJANGO_SUPERUSER_USERNAME "
+                    "or DJANGO_SUPERUSER_PASSWORD is missing."
+                )
             )
+            return
 
         User = get_user_model()
         user, created = User.objects.get_or_create(username=username, defaults={"email": email or ""})
