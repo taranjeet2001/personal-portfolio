@@ -34,11 +34,35 @@
   padding: 12px 14px;
   outline: none;
   white-space: pre-wrap;
+  background: #ffffff;
+  color: #111827 !important;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.65;
 }
 
 .rich-editor__surface:empty::before {
   content: attr(data-placeholder);
   color: #8c959f;
+}
+
+.rich-editor__surface * {
+  color: inherit !important;
+  font-family: inherit;
+}
+
+.rich-editor__surface p {
+  margin: 0 0 0.75rem;
+}
+
+.rich-editor__surface ul,
+.rich-editor__surface ol {
+  margin: 0 0 0.75rem 1.25rem;
+  padding-left: 1rem;
+}
+
+.rich-editor__surface li {
+  margin: 0.2rem 0;
 }
 
 .rich-editor-source--hidden {
