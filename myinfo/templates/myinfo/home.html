@@ -1,0 +1,464 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{% if profile %}{{ profile.full_name }}{% else %}Portfolio{% endif %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'myinfo/css/open-iconic-bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'myinfo/css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'myinfo/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'myinfo/css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'myinfo/css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'myinfo/css/aos.css' %}">
+    <link rel="stylesheet" href="{% static 'myinfo/css/ionicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'myinfo/css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'myinfo/css/icomoon.css' %}">
+    <link rel="stylesheet" href="{% static 'myinfo/css/style.css' %}">
+  </head>
+  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target" id="ftco-navbar">
+      <div class="container">
+        <a class="navbar-brand" href="{% url 'home' %}"><span>{% if profile %}{{ profile.full_name|slice:":1" }}{% else %}T{% endif %}</span>{% if profile %}{{ profile.full_name|slice:"1:" }}{% else %}aranjeet Singh{% endif %}</a>
+        <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="oi oi-menu"></span> Menu
+        </button>
+
+        <div class="collapse navbar-collapse" id="ftco-nav">
+          <ul class="navbar-nav nav ml-auto">
+            <li class="nav-item"><a href="#home-section" class="nav-link"><span>Home</span></a></li>
+            <li class="nav-item"><a href="#about-section" class="nav-link"><span>About</span></a></li>
+            <li class="nav-item"><a href="#resume-section" class="nav-link"><span>Resume</span></a></li>
+            <li class="nav-item"><a href="#services-section" class="nav-link"><span>Services</span></a></li>
+            <li class="nav-item"><a href="#projects-section" class="nav-link"><span>Projects</span></a></li>
+            <li class="nav-item"><a href="#contact-section" class="nav-link"><span>Contact</span></a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <section class="hero-wrap js-fullheight" id="home-section">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text js-fullheight justify-content-center align-items-center">
+          <div class="col-lg-8 col-md-6 ftco-animate d-flex align-items-center">
+            <div class="text text-center">
+              <span class="subheading">Hey! I am</span>
+              <h1>{% if profile %}{{ profile.full_name }}{% else %}Taranjeet Singh{% endif %}</h1>
+              <h2>I'm a
+                <span
+                  class="txt-rotate"
+                  data-period="2000"
+                  data-rotate='[{% if profile %}{% for tag in profile.tags.all %}"{{ tag.label }}"{% if not forloop.last %}, {% endif %}{% endfor %}{% else %}"Python Developer.","Senior Software Engineer"{% endif %}]'>
+                </span>
+              </h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mouse">
+        <a href="#" class="mouse-icon">
+          <div class="mouse-wheel"><span class="ion-ios-arrow-round-down"></span></div>
+        </a>
+      </div>
+    </section>
+
+    <section class="ftco-about img ftco-section ftco-no-pt ftco-no-pb" id="about-section">
+      <div class="container">
+        <div class="row d-flex no-gutters">
+          <div class="col-md-6 col-lg-6 d-flex">
+            <div class="img-about img d-flex align-items-stretch">
+              <div class="overlay"></div>
+              <div class="img d-flex align-self-stretch align-items-center" style="background-image: url({% if profile and profile.primary_image %}{{ profile.primary_image.url }}{% else %}{% static 'myinfo/images/photo5.jpg' %}{% endif %}); object-fit: cover;">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-6 pl-md-5 py-5">
+            <div class="row justify-content-start pb-3">
+              <div class="col-md-12 heading-section ftco-animate">
+                <h1 class="big">About</h1>
+                <h2 class="mb-4">About Me</h2>
+                <p>{% if profile %}{{ profile.summary }}{% else %}Add a short summary in admin.{% endif %}</p>
+                <ul class="about-info mt-4 px-md-0 px-2">
+                  <li class="d-flex"><span>Name:</span> <span>{% if profile %}{{ profile.full_name }}{% else %}Taranjeet Singh{% endif %}</span></li>
+                  <li class="d-flex"><span>Location:</span> <span>{% if profile %}{{ profile.location }}{% else %}Kalkaji, New Delhi{% endif %}</span></li>
+                  <li class="d-flex"><span>Email:</span> <span>{% if profile %}{{ profile.email }}{% else %}taranjeet.0815@gmail.com{% endif %}</span></li>
+                  <li class="d-flex"><span>Phone:</span> <span>{% if profile %}{{ profile.phone }}{% else %}+91 9999-284429{% endif %}</span></li>
+                  <li class="d-flex"><span>LinkedIn:</span> <span>{% if profile and profile.linkedin_url %}<a href="{{ profile.linkedin_url }}" target="_blank" rel="noopener">Profile</a>{% else %}-{% endif %}</span></li>
+                </ul>
+              </div>
+            </div>
+            <div class="counter-wrap ftco-animate d-flex mt-md-3">
+              <div class="text">
+                <p class="mb-4">
+                  <span class="number" data-number="10">0</span>
+                  <span>Project complete</span>
+                </p>
+                {% if profile and profile.resume_pdf %}
+                  <p><a href="{{ profile.resume_pdf.url }}" class="btn btn-primary py-3 px-3">Download CV</a></p>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ftco-section ftco-no-pb goto-here" id="resume-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3">
+            <nav id="navi">
+              <ul>
+                <li><a href="#page-1">Work Experience</a></li>
+                <li><a href="#page-2">Certifications</a></li>
+                <li><a href="#page-3">Skills</a></li>
+              </ul>
+            </nav>
+          </div>
+          <div class="col-md-9">
+            <div id="page-1" class="page one">
+              <h2 class="heading">Work Experience</h2>
+              {% if profile %}
+                {% for item in profile.experiences.all %}
+                  <div class="resume-wrap d-flex ftco-animate">
+                    <div class="icon d-flex align-items-center justify-content-center">
+                      <span class="flaticon-ideas"></span>
+                    </div>
+                    <div class="text pl-3">
+                      <span class="date">{{ item.period }}</span>
+                      <h2>{{ item.title }}</h2>
+                      <span class="position">{{ item.company }}</span>
+                      <p>{{ item.description }}</p>
+                    </div>
+                  </div>
+                {% empty %}
+                  <p class="text-muted">Add work experience items in admin.</p>
+                {% endfor %}
+              {% endif %}
+            </div>
+
+            <div id="page-2" class="page two">
+              <h2 class="heading">Certifications</h2>
+              {% if profile %}
+                {% for item in profile.certifications.all %}
+                  <div class="resume-wrap d-flex ftco-animate">
+                    <div class="icon d-flex align-items-center justify-content-center">
+                      <span class="flaticon-ideas"></span>
+                    </div>
+                    <div class="text pl-3">
+                      <span class="date">{{ item.period }}</span>
+                      <h2>{{ item.title }}</h2>
+                      <span class="position">{{ item.issuer }}</span>
+                      {% if item.credential_url %}
+                        <p><a href="{{ item.credential_url }}" target="_blank" rel="noopener">View credential</a></p>
+                      {% endif %}
+                    </div>
+                  </div>
+                {% empty %}
+                  <p class="text-muted">Add certifications in admin.</p>
+                {% endfor %}
+              {% endif %}
+            </div>
+
+            <div id="page-3" class="page three">
+              <h2 class="heading">Skills</h2>
+              <div class="row">
+                <div class="col-12">
+                  {% if profile %}
+                    {% for item in profile.skills.all %}
+                      <span class="badge badge-primary p-3 mr-2 mb-2" style="font-size: 14px; border-radius: 999px;">{{ item.name }}</span>
+                    {% empty %}
+                      <p class="text-muted">Add skills in admin.</p>
+                    {% endfor %}
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ftco-section" id="services-section">
+      <div class="container-fluid px-md-5">
+        <div class="row justify-content-center py-5 mt-5">
+          <div class="col-md-12 heading-section text-center ftco-animate">
+            <h1 class="big big-2">Services</h1>
+            <h2 class="mb-4">Services</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 text-center d-flex ftco-animate">
+            <a href="#" class="services-1 shadow">
+              <span class="icon">
+                <i class="flaticon-analysis"></i>
+              </span>
+              <div class="desc">
+                <h3 class="mb-5">Web Designing</h3>
+                <p>designing of websites</p>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-4 text-center d-flex ftco-animate">
+            <a href="#" class="services-1 shadow">
+              <span class="icon">
+                <i class="flaticon-flasks"></i>
+              </span>
+              <div class="desc">
+                <h3 class="mb-5">Database management</h3>
+                <p>Management of databases</p>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-4 text-center d-flex ftco-animate">
+            <a href="#" class="services-1 shadow">
+              <span class="icon">
+                <i class="flaticon-ideas"></i>
+              </span>
+              <div class="desc">
+                <h3 class="mb-5">Web Developer</h3>
+                <p>Develops the websites according to the requirements.</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ftco-section ftco-project" id="projects-section">
+      <div class="container-fluid px-md-0">
+        <div class="row no-gutters justify-content-center pb-5">
+          <div class="col-md-12 heading-section text-center ftco-animate">
+            <h1 class="big big-2">Projects</h1>
+            <h2 class="mb-4">My Projects</h2>
+          </div>
+        </div>
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <div class="project img ftco-animate d-flex justify-content-center align-items-center" style="background-image: url(/static/myinfo/images/hospital.jpg);">
+              <div class="overlay"></div>
+              <div class="text text-center p-4">
+                <h3><a href="https://github.com/taranjeet2001/Healthcare-Solutions">Heathcare Solutions &amp; Chatbot Integration</a></h3>
+                <span>Website Development</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="project img ftco-animate d-flex justify-content-center align-items-center" style="background-image: url(/static/myinfo/images/learning.png);">
+              <div class="overlay"></div>
+              <div class="text text-center p-4">
+                <h3><a href="https://github.com/taranjeet2001/online-learning-portal">Online Learning Portal &amp; Seamless Learning Experience</a></h3>
+                <span>Website Development</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="project img ftco-animate d-flex justify-content-center align-items-center" style="background-image: url(/static/myinfo/images/laundry.png);">
+              <div class="overlay"></div>
+              <div class="text text-center p-4">
+                <h3><a href="https://paslaundry.in">Laundry Equipment Website &amp; E-Com</a></h3>
+                <span>Website Development</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ftco-section contact-section ftco-no-pb" id="contact-section">
+      <div class="container">
+        <div class="row justify-content-center mb-5 pb-3">
+          <div class="col-md-7 heading-section text-center ftco-animate">
+            <h1 class="big big-2">Contact</h1>
+            <h2 class="mb-4">Contact Me</h2>
+            <p>Available for freelance and full-time opportunities.</p>
+          </div>
+        </div>
+
+        <div class="row d-flex contact-info mb-5">
+          <div class="col-md-6 col-lg-4 d-flex ftco-animate">
+            <div class="align-self-stretch box text-center p-4 shadow">
+              <div class="icon d-flex align-items-center justify-content-center">
+                <span class="icon-map-signs"></span>
+              </div>
+              <div>
+                <h3 class="mb-4">Address</h3>
+                <p>{% if profile %}{{ profile.location }}{% else %}Kalkaji , New Delhi{% endif %}</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 d-flex ftco-animate">
+            <div class="align-self-stretch box text-center p-4 shadow">
+              <div class="icon d-flex align-items-center justify-content-center">
+                <span class="icon-phone2"></span>
+              </div>
+              <div>
+                <h3 class="mb-4">Contact Number</h3>
+                <p><a href="tel:{% if profile %}{{ profile.phone }}{% else %}+919999284429{% endif %}">{% if profile %}{{ profile.phone }}{% else %}+91 9999-284429{% endif %}</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 d-flex ftco-animate">
+            <div class="align-self-stretch box text-center p-4 shadow">
+              <div class="icon d-flex align-items-center justify-content-center">
+                <span class="icon-paper-plane"></span>
+              </div>
+              <div>
+                <h3 class="mb-4">Email Address</h3>
+                <p><a href="mailto:{% if profile %}{{ profile.email }}{% else %}taranjeet.0815@gmail.com{% endif %}">{% if profile %}{{ profile.email }}{% else %}taranjeet.0815@gmail.com{% endif %}</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row no-gutters block-9">
+          <div class="col-md-6 order-md-last d-flex" id="contact">
+            <form class="bg-light p-4 p-md-5 contact-form">
+              {% csrf_token %}
+              <div id="msg" class="alert alert-primary" style="display: none"></div>
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Your Name" id="txtName" required>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Your Email" id="txtEmail" required>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Subject" id="txtSubject" required>
+              </div>
+              <div class="form-group">
+                <textarea cols="30" rows="7" class="form-control" placeholder="Message" id="txtMessage" required></textarea>
+              </div>
+              <div class="form-group">
+                <input class="btn btn-primary py-3 px-5" type="button" onclick="ContactUs()" value="Send Message">
+              </div>
+            </form>
+          </div>
+          <div class="col-md-6 d-flex">
+            <div class="img" style="background-image: url({% if profile and profile.primary_image %}{{ profile.primary_image.url }}{% else %}{% static 'myinfo/images/fullphoto.jpg' %}{% endif %});"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="ftco-footer ftco-section">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">About</h2>
+              <p>{% if profile %}{{ profile.summary }}{% else %}A highly organized and hardworking individual seeking a responsible position to learn and utilize skills to the maximum.{% endif %}</p>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4 ml-md-4">
+              <h2 class="ftco-heading-2">Links</h2>
+              <ul class="list-unstyled">
+                <li><a href="#home-section"><span class="icon-long-arrow-right mr-2"></span>Home</a></li>
+                <li><a href="#about-section"><span class="icon-long-arrow-right mr-2"></span>About</a></li>
+                <li><a href="#services-section"><span class="icon-long-arrow-right mr-2"></span>Services</a></li>
+                <li><a href="#projects-section"><span class="icon-long-arrow-right mr-2"></span>Projects</a></li>
+                <li><a href="#contact-section"><span class="icon-long-arrow-right mr-2"></span>Contact</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">Skills</h2>
+              <ul class="list-unstyled">
+                {% if profile %}
+                  {% for item in profile.skills.all|slice:":5" %}
+                    <li><a href="#skills-section"><span class="icon-long-arrow-right mr-2"></span>{{ item.name }}</a></li>
+                  {% empty %}
+                    <li><a href="#skills-section"><span class="icon-long-arrow-right mr-2"></span>Python</a></li>
+                  {% endfor %}
+                {% endif %}
+              </ul>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">Have a Questions?</h2>
+              <div class="block-23 mb-3">
+                <ul>
+                  <li><span class="icon icon-map-marker"></span><span class="text">{% if profile %}{{ profile.location }}{% else %}Kalkaji , New Delhi{% endif %}</span></li>
+                  <li><a href="tel:{% if profile %}{{ profile.phone }}{% else %}+919999284429{% endif %}"><span class="icon icon-phone"></span><span class="text">{% if profile %}{{ profile.phone }}{% else %}+91 9999-284429{% endif %}</span></a></li>
+                  <li><a href="mailto:{% if profile %}{{ profile.email }}{% else %}taranjeet.0815@gmail.com{% endif %}"><span class="icon icon-envelope"></span><span class="text">{% if profile %}{{ profile.email }}{% else %}taranjeet.0815@gmail.com{% endif %}</span></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <p>Copyright &copy;{% now "Y" %} All rights reserved | {% if profile %}{{ profile.full_name }}{% else %}Taranjeet Singh{% endif %}</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+    <script>
+      function ContactUs() {
+        const name = document.getElementById('txtName').value.trim();
+        const email = document.getElementById('txtEmail').value.trim();
+        const subject = document.getElementById('txtSubject').value.trim();
+        const message = document.getElementById('txtMessage').value.trim();
+        const msgDiv = document.getElementById('msg');
+
+        if (!name || !email || !subject || !message) {
+          msgDiv.textContent = "All fields are required.";
+          msgDiv.classList.remove("alert-primary");
+          msgDiv.classList.add("alert-danger");
+          msgDiv.style.display = "block";
+          return;
+        }
+
+        $.ajax({
+          url: "{% url 'send_contact_email' %}",
+          method: "POST",
+          data: {
+            name: name,
+            email: email,
+            subject: subject,
+            message: message
+          },
+          dataType: "json",
+          success: function(response) {
+            if (response.status === 'Sent') {
+              msgDiv.textContent = "Thank you! Your message has been sent.";
+              msgDiv.classList.remove("alert-danger");
+              msgDiv.classList.add("alert-primary");
+            } else {
+              msgDiv.textContent = "Error sending message. Please try again.";
+              msgDiv.classList.add("alert-danger");
+            }
+            msgDiv.style.display = "block";
+          },
+          error: function() {
+            msgDiv.textContent = "Something went wrong. Please try again.";
+            msgDiv.classList.add("alert-danger");
+            msgDiv.style.display = "block";
+          }
+        });
+      }
+    </script>
+
+    <script src="{% static 'myinfo/js/jquery.min.js' %}"></script>
+    <script src="{% static 'myinfo/js/jquery-migrate-3.0.1.min.js' %}"></script>
+    <script src="{% static 'myinfo/js/popper.min.js' %}"></script>
+    <script src="{% static 'myinfo/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'myinfo/js/jquery.easing.1.3.js' %}"></script>
+    <script src="{% static 'myinfo/js/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'myinfo/js/jquery.stellar.min.js' %}"></script>
+    <script src="{% static 'myinfo/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'myinfo/js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'myinfo/js/aos.js' %}"></script>
+    <script src="{% static 'myinfo/js/jquery.animateNumber.min.js' %}"></script>
+    <script src="{% static 'myinfo/js/scrollax.min.js' %}"></script>
+    <script src="{% static 'myinfo/js/main.js' %}"></script>
+  </body>
+</html>
