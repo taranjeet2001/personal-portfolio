@@ -144,6 +144,8 @@ CSRF_TRUSTED_ORIGINS = [
     origin
     for origin in [
         os.environ.get("RENDER_EXTERNAL_URL", "").rstrip("/"),
+        "https://taranjeet-singh.com",
+        "https://www.taranjeet-singh.com",
         "https://*.onrender.com",
         "http://localhost:8000",
         "http://127.0.0.1:8000",
